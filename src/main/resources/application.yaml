@@ -37,6 +37,6 @@ request:
     enable: true
 
 file:
-  path: D:/data/file/
+  path: /data/file/
   mapper: /file/
 
