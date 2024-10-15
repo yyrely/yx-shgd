@@ -1,5 +1,5 @@
 #!/bin/bash
-APP_NAME=sy-shgd-0.0.1-SNAPSHOT.jar
+APP_NAME=yx-shgd-0.0.1-SNAPSHOT.jar
 
 usage() {
 	echo "case:sh run.sh [start | stop | restart | status]"
