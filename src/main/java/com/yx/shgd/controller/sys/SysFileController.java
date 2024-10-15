@@ -3,6 +3,7 @@ package com.yx.shgd.controller.sys;
 import com.yx.shgd.model.vo.sys.SysFileVo;
 import com.yx.shgd.service.sys.ISysFileService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,7 @@ public class SysFileController {
     private ISysFileService sysFileService;
 
     @PostMapping("/upload")
+    @ApiOperation("文件上传")
     public SysFileVo upload(MultipartFile file, HttpServletRequest request) {
         return sysFileService.upload(file, request);
     }
