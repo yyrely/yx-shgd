@@ -29,7 +29,7 @@ mybatis-plus:
 
 logging:
   file:
-    path: /data/logs/crm
+    path: /data/logs/yx-shgd
   config: classpath:logback-spring.xml
 
 request:
