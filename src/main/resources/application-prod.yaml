@@ -3,7 +3,7 @@ spring:
     url: jdbc:mysql://${service.ip}:3306/yx-shgd?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&serverTimezone=Asia/Shanghai
     username: ENC(AkL48Oi3cR5nLEjZJ3Y32Q==)
     password: ENC(pfnBfUXIfcKWjiNJQNgJ29lEYfQ2AZ5w)
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       connection-test-query: SELECT 1 FROM DUAL
