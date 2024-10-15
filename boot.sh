@@ -28,7 +28,8 @@ start() {
         git pull
         mvn clean package -Dmaven.test.skip=true
         cd target
-        nohup java -jar ${APP_NAME} -Xms512m -Xmx512m --jasypt.encryptor.password=123456 > output.log 2>&1 &
+        nohup java -jar ${APP_NAME} -Xms512m -Xmx512m --jasypt.encryptor.password=123456 --spring.profiles.active=prod
+.> output.log 2>&1 &
 		echo "${APP_NAME} started"
 	fi
 }
