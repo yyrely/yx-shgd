@@ -13,6 +13,7 @@ import com.yx.shgd.common.exception.ServiceException;
 import com.yx.shgd.mapper.sys.SysUserMapper;
 import com.yx.shgd.model.dto.sys.SysMenuDto;
 import com.yx.shgd.model.po.sys.SysDeptRelationPo;
+import com.yx.shgd.model.po.sys.SysMenuPo;
 import com.yx.shgd.model.po.sys.SysUserPo;
 import com.yx.shgd.model.po.sys.SysUserRolePo;
 import com.yx.shgd.model.vo.sys.SysUserVo;
@@ -76,11 +77,11 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserPo>
         // 查询角色对应菜单权限
         Collection<? extends GrantedAuthority> authorities = null;
         if (CollectionUtil.isNotEmpty(roleIds)) {
-            List<SysMenuDto> sysMenuDtos = sysMenuService.findMenuByRoleIds(roleIds);
+            List<SysMenuPo> sysMenuPos = sysMenuService.list();
             List<String> permissions = new ArrayList<>();
-            for (SysMenuDto sysMenuDto : sysMenuDtos) {
-                if (StrUtil.isNotEmpty(sysMenuDto.getPermission())) {
-                    permissions.add(sysMenuDto.getPermission());
+            for (SysMenuPo sysMenuPo : sysMenuPos) {
+                if (StrUtil.isNotEmpty(sysMenuPo.getPermission())) {
+                    permissions.add(sysMenuPo.getPermission());
                 }
             }
             authorities = AuthorityUtils.createAuthorityList(permissions.toArray(new String[0]));
