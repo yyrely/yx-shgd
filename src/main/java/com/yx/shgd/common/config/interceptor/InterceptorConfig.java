@@ -33,11 +33,6 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(traceIdInterceptor);
     }
 
-    @Bean
-    public AutoFillInterceptor auditingInterceptor() {
-        return new AutoFillInterceptor();
-    }
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("doc.html").addResourceLocations("classpath:/META-INF/resources/");

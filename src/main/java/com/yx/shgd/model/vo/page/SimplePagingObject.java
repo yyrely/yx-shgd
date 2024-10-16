@@ -15,10 +15,10 @@ import java.util.List;
 public class SimplePagingObject<T> implements PagingObject<T> {
 
     @ApiModelProperty("页码")
-    private final long pageNum;
+    private final long page;
 
     @ApiModelProperty("分页大小")
-    private final long pageSize;
+    private final long size;
 
     @ApiModelProperty("总页数")
     private final int totalPages;
@@ -29,14 +29,14 @@ public class SimplePagingObject<T> implements PagingObject<T> {
     @ApiModelProperty("分页内容")
     private List<T> content;
 
-    public SimplePagingObject(List<T> content, long pageNum, long pageSize, long totalElements) {
-        Assert.isTrue(pageNum > 0, "pageNum must be positive.");
-        Assert.isTrue(pageSize > 0, "pageSize must be positive.");
+    public SimplePagingObject(List<T> content, long page, long size, long totalElements) {
+        Assert.isTrue(page > 0, "pageNum must be positive.");
+        Assert.isTrue(size > 0, "pageSize must be positive.");
         Assert.isTrue(totalElements >= 0, "totalElements must net be negative.");
-        this.pageNum = pageNum;
-        this.pageSize = pageSize;
+        this.page = page;
+        this.size = size;
         this.totalElements = totalElements;
-        this.totalPages = (int)(totalElements / pageSize + (totalElements % pageSize == 0 ? 0 : 1));
+        this.totalPages = (int)(totalElements / size + (totalElements % size == 0 ? 0 : 1));
         this.content = content == null ? Collections.EMPTY_LIST : content;
     }
 
@@ -51,7 +51,7 @@ public class SimplePagingObject<T> implements PagingObject<T> {
      */
     @Override
     public long getPageNum() {
-        return pageNum;
+        return page;
     }
 
     /**
@@ -61,7 +61,7 @@ public class SimplePagingObject<T> implements PagingObject<T> {
      */
 	@Override
     public long getPageSize() {
-        return pageSize;
+        return size;
     }
 
     /**
@@ -101,7 +101,7 @@ public class SimplePagingObject<T> implements PagingObject<T> {
      */
 	@Override
     public boolean hasPrevious() {
-        return pageNum > 1;
+        return page > 1;
     }
 
     /**
@@ -111,7 +111,7 @@ public class SimplePagingObject<T> implements PagingObject<T> {
      */
 	@Override
     public boolean hasNext() {
-        return pageNum < totalPages;
+        return page < totalPages;
     }
 
     /**

@@ -49,7 +49,7 @@ public class SysUserController {
 
     @ApiOperation("用户分页列表")
     @GetMapping("/page")
-    public PagingObject<SysUserVo> page(Page<SysUserPo> page ,SysUserVo sysUserVo) {
+    public PagingObject<SysUserVo> page(Page<SysUserPo> page, SysUserVo sysUserVo) {
         log.info("用户分页列表");
         IPage<SysUserVo> pageUser = sysUserService.pageUser(page, sysUserVo);
         return new SimplePagingObject<>(pageUser.getRecords(), page.getCurrent(), page.getSize(), pageUser.getTotal());

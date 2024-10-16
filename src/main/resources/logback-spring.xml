@@ -38,7 +38,7 @@
     </appender>
 
     <root level="info">
-        <springProfile name="!prod">
+        <springProfile name="prod">
             <appender-ref ref="console"/>
         </springProfile>
         <appender-ref ref="FILE"/>

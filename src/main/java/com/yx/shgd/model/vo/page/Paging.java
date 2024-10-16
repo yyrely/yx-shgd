@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Paging {
 
-	private int pageSize = 20;
+	private Long page = 1L;
 
-	private int pageNum = 1;
+	private Long size = 10L;
 }

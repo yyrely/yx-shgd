@@ -2,20 +2,27 @@ package com.yx.shgd.model.po.home;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.yx.shgd.model.po.BaseFiled;
-import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName("home_carousel")
-public class CarouselPo extends BaseFiled {
-
-    private String path;
+@TableName("home_factory")
+public class FactoryPo extends BaseFiled {
 
     private String name;
 
-    private Integer sort;
+    private String phone;
+
+    private String mobile;
+
+    private String email;
+
+    private String address;
+
+    private String about;
+
+    private String aboutPicture;
 
     private Boolean enable;
 }
