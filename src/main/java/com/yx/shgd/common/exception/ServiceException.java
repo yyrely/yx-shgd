@@ -14,7 +14,7 @@ public class ServiceException extends RuntimeException{
     private Integer code;
     private Integer httpCode;
 
-    public final static Integer DEFAULT_CODE = 0;
+    public final static Integer DEFAULT_CODE = 1;
 
     public final static Integer DEFAULT_HTTP_CODE = 200;
 

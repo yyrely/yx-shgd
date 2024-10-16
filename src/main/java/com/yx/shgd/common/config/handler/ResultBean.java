@@ -20,8 +20,8 @@ public class ResultBean<T> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public final static int SUCCESS = 1;
-    public final static int FAIL = 0;
+    public final static int SUCCESS = 0;
+    public final static int FAIL = 1;
 
     @ApiModelProperty("标识代码,1表示成功，非1表示出错")
     private int code;
