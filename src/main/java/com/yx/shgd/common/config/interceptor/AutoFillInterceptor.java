@@ -21,7 +21,7 @@ import java.util.Properties;
  * @date 2022/1/19 14:28
  */
 
-@Intercepts({@Signature(type = Executor.class, method = "update", args = {MappedStatement.class, Object.class})})
+//@Intercepts({@Signature(type = Executor.class, method = "update", args = {MappedStatement.class, Object.class})})
 public class AutoFillInterceptor implements Interceptor {
 
 	@Override
