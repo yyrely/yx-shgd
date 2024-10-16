@@ -28,7 +28,7 @@ public class SysFileServiceImpl implements ISysFileService {
 
 
     @Override
-    public SysFileVo upload(MultipartFile file, HttpServletRequest request) {
+    public SysFileVo upload(MultipartFile file) {
         if(Objects.isNull(file)) {
             throw new ServiceException("上传文件为空");
         }
@@ -54,7 +54,7 @@ public class SysFileServiceImpl implements ISysFileService {
             // 构建并返回自定义的 SysFileVo 对象（假设 SysFileVo 包含文件相关信息）
             SysFileVo sysFileVo = new SysFileVo();
             sysFileVo.setName(originalFileName);
-            sysFileVo.setPath(request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + fileMapper + date + "/" + newFileName);
+            sysFileVo.setPath(fileMapper + date + "/" + newFileName);
             return sysFileVo;
         } catch (Exception e) {
             // 捕获并处理异常

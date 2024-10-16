@@ -22,7 +22,7 @@ public class SysFileController {
 
     @PostMapping("/upload")
     @ApiOperation("文件上传")
-    public SysFileVo upload(MultipartFile file, HttpServletRequest request) {
-        return sysFileService.upload(file, request);
+    public SysFileVo upload(MultipartFile file) {
+        return sysFileService.upload(file);
     }
 }

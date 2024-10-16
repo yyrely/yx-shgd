@@ -7,5 +7,5 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface ISysFileService {
 
-    SysFileVo upload(MultipartFile file, HttpServletRequest request);
+    SysFileVo upload(MultipartFile file);
 }
