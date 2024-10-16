@@ -5,21 +5,22 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.time.LocalDateTime;
-
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class CarouselQueryVo extends Paging {
+public class AdvantageQueryVo extends Paging {
 
-    @ApiModelProperty(value = "主键")
-    private Long id;
+    @ApiModelProperty(value = "标题")
+    private String title;
+
+    @ApiModelProperty(value = "内容")
+    private String content;
 
     @ApiModelProperty(value = "图片地址")
-    private String path;
+    private String picture;
 
     @ApiModelProperty(value = "排序")
     private Integer sort;
 
-    @ApiModelProperty(value = "开关，0-关，1-开")
+    @ApiModelProperty(value = "开关")
     private Boolean enable;
 }
