@@ -15,14 +15,14 @@ public interface PagingObject<T> extends Iterable<T>, Serializable {
 	 *
 	 * @return
 	 */
-	long getPageNum();
+	long getPage();
 
 	/**
 	 * 分页大小
 	 *
 	 * @return
 	 */
-	long getPageSize();
+	long getSize();
 
 	/**
 	 * 总页数

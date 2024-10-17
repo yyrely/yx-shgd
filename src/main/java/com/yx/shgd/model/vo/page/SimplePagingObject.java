@@ -50,7 +50,7 @@ public class SimplePagingObject<T> implements PagingObject<T> {
      * @return
      */
     @Override
-    public long getPageNum() {
+    public long getPage() {
         return page;
     }
 
@@ -60,7 +60,7 @@ public class SimplePagingObject<T> implements PagingObject<T> {
      * @return
      */
 	@Override
-    public long getPageSize() {
+    public long getSize() {
         return size;
     }
 
