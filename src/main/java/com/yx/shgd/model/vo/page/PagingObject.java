@@ -29,7 +29,7 @@ public interface PagingObject<T> extends Iterable<T>, Serializable {
 	 *
 	 * @return
 	 */
-	int getTotalPages();
+	int getTotal();
 
 	/**
 	 * 总记录数
@@ -78,12 +78,12 @@ public interface PagingObject<T> extends Iterable<T>, Serializable {
 	 *
 	 * @return
 	 */
-	boolean hasContent();
+	boolean hasRecords();
 
 	/**
 	 * 获取分页内容
 	 *
 	 * @return
 	 */
-	List<T> getContent();
+	List<T> getRecords();
 }

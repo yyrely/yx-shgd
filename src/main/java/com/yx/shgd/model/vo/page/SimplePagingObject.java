@@ -21,27 +21,27 @@ public class SimplePagingObject<T> implements PagingObject<T> {
     private final long size;
 
     @ApiModelProperty("总页数")
-    private final int totalPages;
+    private final int total;
 
     @ApiModelProperty("总记录数")
     private final long totalElements;
 
     @ApiModelProperty("分页内容")
-    private List<T> content;
+    private List<T> records;
 
-    public SimplePagingObject(List<T> content, long page, long size, long totalElements) {
+    public SimplePagingObject(List<T> records, long page, long size, long totalElements) {
         Assert.isTrue(page > 0, "pageNum must be positive.");
         Assert.isTrue(size > 0, "pageSize must be positive.");
         Assert.isTrue(totalElements >= 0, "totalElements must net be negative.");
         this.page = page;
         this.size = size;
         this.totalElements = totalElements;
-        this.totalPages = (int)(totalElements / size + (totalElements % size == 0 ? 0 : 1));
-        this.content = content == null ? Collections.EMPTY_LIST : content;
+        this.total = (int)(totalElements / size + (totalElements % size == 0 ? 0 : 1));
+        this.records = records == null ? Collections.EMPTY_LIST : records;
     }
 
-    protected void setContent(List<T> content) {
-        this.content = content;
+    protected void setRecords(List<T> records) {
+        this.records = records;
     }
 
     /**
@@ -70,8 +70,8 @@ public class SimplePagingObject<T> implements PagingObject<T> {
      * @return
      */
 	@Override
-    public int getTotalPages() {
-        return totalPages;
+    public int getTotal() {
+        return total;
     }
 
     /**
@@ -91,7 +91,7 @@ public class SimplePagingObject<T> implements PagingObject<T> {
      */
 	@Override
     public int getNumberOfElements() {
-        return content.size();
+        return records.size();
     }
 
     /**
@@ -111,7 +111,7 @@ public class SimplePagingObject<T> implements PagingObject<T> {
      */
 	@Override
     public boolean hasNext() {
-        return page < totalPages;
+        return page < total;
     }
 
     /**
@@ -140,17 +140,17 @@ public class SimplePagingObject<T> implements PagingObject<T> {
      * @return
      */
 	@Override
-    public boolean hasContent() {
-        return !content.isEmpty();
+    public boolean hasRecords() {
+        return !records.isEmpty();
     }
 
 	@Override
-    public List<T> getContent() {
-        return Collections.unmodifiableList(content);
+    public List<T> getRecords() {
+        return Collections.unmodifiableList(records);
     }
 
     @Override
     public Iterator<T> iterator() {
-        return content.iterator();
+        return records.iterator();
     }
 }
