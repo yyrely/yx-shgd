@@ -31,10 +31,4 @@ public class FactoryQueryVo extends Paging {
     @ApiModelProperty(value = "关于图片")
     private String aboutPicture;
 
-    @ApiModelProperty(value = "排序")
-    private Integer sort;
-
-    @ApiModelProperty(value = "开关，0-开，1-关")
-    private Boolean enable;
-
 }

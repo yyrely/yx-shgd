@@ -70,6 +70,7 @@ public class ProductController {
         productService.removeById(id);
     }
 
+    @AnonymousAccess
     @PostMapping("/page")
     @ApiOperation("分页")
     public SimplePagingObject<ProductVo> page(@RequestBody ProductQueryVo productQueryVo) {

@@ -12,6 +12,28 @@ public class ProductPo extends BaseFiled {
 
     private String name;
 
+    private String englishName;
+
+    private String type;
+
+    private String specification;
+
+    private String brand;
+
+    private String alias;
+
+    private String englishAlias;
+
+    private String code;
+
+    private String casNo;
+
+    private String molecularFormula;
+
+    private String molecularWeight;
+
+    private String purity;
+
     private String picture;
 
     private Integer sort;

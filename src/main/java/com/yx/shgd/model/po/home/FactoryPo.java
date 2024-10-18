@@ -23,8 +23,4 @@ public class FactoryPo extends BaseFiled {
     private String about;
 
     private String aboutPicture;
-
-    private Integer sort;
-
-    private Boolean enable;
 }

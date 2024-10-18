@@ -27,6 +27,11 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, ProductPo> im
     public IPage<ProductPo> pageProduct(ProductQueryVo productQueryVo) {
         LambdaQueryWrapper<ProductPo> queryWrapper = Wrappers.lambdaQuery(ProductPo.class)
                 .like(CharSequenceUtil.isNotEmpty(productQueryVo.getName()), ProductPo::getName, productQueryVo.getName())
+                .like(CharSequenceUtil.isNotEmpty(productQueryVo.getCasNo()), ProductPo::getCasNo, productQueryVo.getCasNo())
+                .eq(CharSequenceUtil.isNotEmpty(productQueryVo.getType()), ProductPo::getType, productQueryVo.getType())
+                .eq(CharSequenceUtil.isNotEmpty(productQueryVo.getBrand()), ProductPo::getBrand, productQueryVo.getBrand())
+                .eq(CharSequenceUtil.isNotEmpty(productQueryVo.getSpecification()), ProductPo::getSpecification, productQueryVo.getSpecification())
+                .eq(CharSequenceUtil.isNotEmpty(productQueryVo.getPurity()), ProductPo::getPurity, productQueryVo.getPurity())
                 .eq(Objects.nonNull(productQueryVo.getEnable()), ProductPo::getEnable, productQueryVo.getEnable())
                 .orderByDesc(ProductPo::getCreateTime);
         return this.page(new Page<>(productQueryVo.getPage(), productQueryVo.getSize()), queryWrapper);
