@@ -3,6 +3,7 @@ package com.yx.shgd.common.config.authorization;
 import com.yx.shgd.common.exception.BaseErrorCode;
 import com.yx.shgd.common.exception.ServiceException;
 import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * @date 2022/1/20 10:52
  */
 
+@Slf4j
 @UtilityClass
 public class SecurityUtil {
 
@@ -33,6 +35,7 @@ public class SecurityUtil {
         try {
             return (AuthUser) getAuthentication().getPrincipal();
         } catch (Exception e) {
+            log.error("traceId interceptor error: {}", e.getMessage(), e);
             throw new ServiceException(BaseErrorCode.NOT_LOGIN, "登录状态过期");
         }
     }
