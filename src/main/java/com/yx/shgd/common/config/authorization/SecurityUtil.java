@@ -38,10 +38,6 @@ public class SecurityUtil {
             if(principal instanceof AuthUser) {
                 return (AuthUser) principal;
             }
-            if(principal instanceof String) {
-                String s = (String) principal;
-                log.info("string principal: {}", s);
-            }
         } catch (Exception e) {
             log.error("get user error: {}", e.getMessage(), e);
             throw new ServiceException(BaseErrorCode.NOT_LOGIN, "登录状态过期");
