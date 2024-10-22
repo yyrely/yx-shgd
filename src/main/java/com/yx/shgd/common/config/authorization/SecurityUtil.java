@@ -35,7 +35,7 @@ public class SecurityUtil {
         try {
             return (AuthUser) getAuthentication().getPrincipal();
         } catch (Exception e) {
-            log.error("traceId interceptor error: {}", e.getMessage(), e);
+            log.error("get user error: {}", e.getMessage(), e);
             throw new ServiceException(BaseErrorCode.NOT_LOGIN, "登录状态过期");
         }
     }
