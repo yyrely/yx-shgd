@@ -152,6 +152,7 @@ public class SysDictController {
         sysDictDetailService.removeById(id);
     }
 
+    @AnonymousAccess
     @GetMapping("/detail/list")
     @ApiOperation("字典详情列表")
     public List<SysDictDetailVo> listDetail(@RequestParam("dictId") Long dictId) {

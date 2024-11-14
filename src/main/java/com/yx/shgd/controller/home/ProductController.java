@@ -2,20 +2,25 @@ package com.yx.shgd.controller.home;
 
 
 import cn.hutool.core.bean.BeanUtil;
+import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yx.shgd.common.config.authorization.AnonymousAccess;
 import com.yx.shgd.common.exception.ServiceException;
 import com.yx.shgd.model.po.home.ProductPo;
+import com.yx.shgd.model.vo.home.ProductExcelVo;
 import com.yx.shgd.model.vo.home.ProductQueryVo;
 import com.yx.shgd.model.vo.home.ProductVo;
 import com.yx.shgd.model.vo.page.SimplePagingObject;
 import com.yx.shgd.service.home.INewService;
 import com.yx.shgd.service.home.IProductService;
+import com.yx.shgd.utils.ProductExcelDataListener;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
@@ -36,6 +41,7 @@ public class ProductController {
      * @param id ID
      * @return SysDept
      */
+    @AnonymousAccess
     @GetMapping("/info/{id}")
     @ApiOperation("通过ID查询详情")
     public ProductVo getById(@PathVariable Integer id) {
@@ -87,5 +93,44 @@ public class ProductController {
         List<ProductPo> productPos = productService.listProduct(productQueryVo);
         return BeanUtil.copyToList(productPos, ProductVo.class);
     }
+
+    @PostMapping("/import")
+    @ApiOperation("导入")
+    public void excelImport(MultipartFile file) throws IOException {
+        productService.excelImport(file);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

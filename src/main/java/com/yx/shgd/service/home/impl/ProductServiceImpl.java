@@ -1,6 +1,9 @@
 package com.yx.shgd.service.home.impl;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.text.CharSequenceUtil;
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.EasyExcelFactory;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -11,11 +14,15 @@ import com.yx.shgd.mapper.home.ProductMapper;
 import com.yx.shgd.model.po.home.AdvantagePo;
 import com.yx.shgd.model.po.home.FactoryPo;
 import com.yx.shgd.model.po.home.ProductPo;
+import com.yx.shgd.model.vo.home.ProductExcelVo;
 import com.yx.shgd.model.vo.home.ProductQueryVo;
 import com.yx.shgd.service.home.IFactoryService;
 import com.yx.shgd.service.home.IProductService;
+import com.yx.shgd.utils.ProductExcelDataListener;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
@@ -44,4 +51,34 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, ProductPo> im
                 .orderByAsc(ProductPo::getSort);
         return this.list(queryWrapper);
     }
+
+    @Override
+    public void excelImport(MultipartFile file) throws IOException {
+        ProductExcelDataListener listener = new ProductExcelDataListener();
+        EasyExcelFactory.read(file.getInputStream(), ProductExcelVo.class, listener).sheet().doRead();
+        List<ProductExcelVo> productExcelVos = listener.getDataList();
+        List<ProductPo> productPos = BeanUtil.copyToList(productExcelVos, ProductPo.class);
+        this.saveBatch(productPos);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
