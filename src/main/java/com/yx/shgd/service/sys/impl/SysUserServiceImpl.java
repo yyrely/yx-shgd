@@ -16,11 +16,13 @@ import com.yx.shgd.model.po.sys.SysDeptRelationPo;
 import com.yx.shgd.model.po.sys.SysMenuPo;
 import com.yx.shgd.model.po.sys.SysUserPo;
 import com.yx.shgd.model.po.sys.SysUserRolePo;
+import com.yx.shgd.model.vo.sys.SysUserPasswordVo;
 import com.yx.shgd.model.vo.sys.SysUserVo;
 import com.yx.shgd.service.sys.ISysDeptRelationService;
 import com.yx.shgd.service.sys.ISysMenuService;
 import com.yx.shgd.service.sys.ISysUserRoleService;
 import com.yx.shgd.service.sys.ISysUserService;
+import com.yx.shgd.utils.MdcUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -152,6 +154,22 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserPo>
             descendantIds = descendants.stream().map(SysDeptRelationPo::getDescendant).collect(Collectors.toList());
         }
         return baseMapper.pageUser(page, sysUserVo, descendantIds);
+    }
+
+    @Override
+    public void updatePassword(SysUserPasswordVo sysUserPasswordVo) {
+        if(!sysUserPasswordVo.getNewPassword().equals(sysUserPasswordVo.getSurePassword())) {
+            throw new ServiceException("两次输入密码不一致");
+        }
+        String userId = MdcUtils.getUserId();
+        SysUserPo sysUserPo = baseMapper.selectById(Long.valueOf(userId));
+        String encodeOldPassword = bCryptPasswordEncoder.encode(sysUserPasswordVo.getOldPassword());
+        if(!encodeOldPassword.equals(sysUserPo.getPassword())) {
+            throw new ServiceException("原密码错误");
+        }
+        String encodeNewPassword = bCryptPasswordEncoder.encode(sysUserPasswordVo.getNewPassword());
+        sysUserPo.setPassword(encodeNewPassword);
+        baseMapper.updateById(sysUserPo);
     }
 
     private void batchAddUserRole(SysUserVo sysUserVo) {

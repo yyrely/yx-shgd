@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yx.shgd.model.po.sys.SysUserPo;
+import com.yx.shgd.model.vo.sys.SysUserPasswordVo;
 import com.yx.shgd.model.vo.sys.SysUserVo;
 
 /**
@@ -37,4 +38,10 @@ public interface ISysUserService extends IService<SysUserPo> {
      * @param sysUserVo
      */
     IPage<SysUserVo> pageUser(Page<SysUserPo> page, SysUserVo sysUserVo);
+
+    /**
+     * 更新用户密码
+     * @param sysUserPasswordVo
+     */
+    void updatePassword(SysUserPasswordVo sysUserPasswordVo);
 }

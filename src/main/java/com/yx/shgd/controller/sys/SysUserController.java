@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yx.shgd.model.po.sys.SysUserPo;
 import com.yx.shgd.model.vo.page.PagingObject;
 import com.yx.shgd.model.vo.page.SimplePagingObject;
+import com.yx.shgd.model.vo.sys.SysUserPasswordVo;
 import com.yx.shgd.model.vo.sys.SysUserVo;
 import com.yx.shgd.service.sys.ISysUserService;
 import io.swagger.annotations.Api;
@@ -45,6 +46,12 @@ public class SysUserController {
     @PostMapping("/update")
     public void update(@Valid @RequestBody SysUserVo sysUserVo) {
         sysUserService.updateUser(sysUserVo);
+    }
+
+    @ApiOperation("更新用户密码")
+    @PostMapping("/update/password")
+    public void updatePassword(@Valid @RequestBody SysUserPasswordVo sysUserPasswordVo) {
+        sysUserService.updatePassword(sysUserPasswordVo);
     }
 
     @ApiOperation("用户分页列表")
