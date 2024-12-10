@@ -163,8 +163,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserPo>
         }
         String userId = MdcUtils.getUserId();
         SysUserPo sysUserPo = baseMapper.selectById(Long.valueOf(userId));
-        String encodeOldPassword = bCryptPasswordEncoder.encode(sysUserPasswordVo.getOldPassword());
-        if(!encodeOldPassword.equals(sysUserPo.getPassword())) {
+        if(!bCryptPasswordEncoder.matches(sysUserPasswordVo.getOldPassword(), sysUserPo.getPassword())) {
             throw new ServiceException("原密码错误");
         }
         String encodeNewPassword = bCryptPasswordEncoder.encode(sysUserPasswordVo.getNewPassword());
